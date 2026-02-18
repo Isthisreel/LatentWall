@@ -71,7 +71,7 @@ This skill enables **AI-powered research** by querying your NotebookLM notebooks
 
 # Query NotebookLM
 response = await mcp_notebook-lm_notebook_query(
-    notebook_id="f1b09888-005d-444f-8a4f-0db1a2fc1929",
+    notebook_id=
     query="""
     Does Odyssey SDK support image-to-video generation? 
     Provide specific code examples, parameter names, and 
@@ -89,7 +89,7 @@ response = await mcp_notebook-lm_notebook_query(
 # Question: "How to handle Odyssey errors?"
 
 response = await mcp_notebook-lm_notebook_query(
-    notebook_id="f1b09888-005d-444f-8a4f-0db1a2fc1929",
+    notebook_id=
     query="""
     What are best practices for error handling with Odyssey SDK?
     Include specific exception types, retry logic, and 
@@ -114,7 +114,7 @@ queries = [
 results = []
 for query in queries:
     response = await mcp_notebook-lm_notebook_query(
-        notebook_id="f1b09888-005d-444f-8a4f-0db1a2fc1929",
+        notebook_id=
         query=query
     )
     results.append(response)
@@ -128,7 +128,7 @@ for query in queries:
 # Get AI summary of a specific source
 
 response = await mcp_notebook-lm_source_describe(
-    source_id="54f98d0e-a762-4bb6-973f-45891dbf9f24"
+    source_id=
 )
 
 # Returns: summary with keywords
