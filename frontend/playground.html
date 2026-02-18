@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synesthesia Playground</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00ff9f 0%, #00b8ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #8892b0;
+            margin-bottom: 50px;
+            font-size: 1.2em;
+        }
+
+        .input-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 255, 159, 0.2);
+        }
+
+        .prompt-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(0, 255, 159, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            color: #fff;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+            transition: all 0.3s;
+        }
+
+        .prompt-input:focus {
+            outline: none;
+            border-color: #00ff9f;
+            box-shadow: 0 0 20px rgba(0, 255, 159, 0.2);
+        }
+
+        .prompt-input::placeholder {
+            color: #8892b0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            align-items: center;
+        }
+
+        .generate-btn {
+            flex: 1;
+            background: linear-gradient(135deg, #00ff9f 0%, #00b8ff 100%);
+            color: #0a0e27;
+            border: none;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .generate-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 159, 0.3);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .orientation-toggle {
+            display: flex;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 5px;
+            gap: 5px;
+        }
+
+        .orientation-btn {
+            padding: 12px 20px;
+            background: transparent;
+            border: none;
+            color: #8892b0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .orientation-btn.active {
+            background: #00ff9f;
+            color: #0a0e27;
+            font-weight: bold;
+        }
+
+        .video-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 159, 0.1);
+        }
+
+        .video-player {
+            width: 100%;
+            max-height: 600px;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .video-player.show {
+            display: block;
+        }
+
+        .placeholder {
+            text-align: center;
+            color: #8892b0;
+        }
+
+        .placeholder-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .loading {
+            text-align: center;
+            display: none;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 255, 159, 0.1);
+            border-top: 4px solid #00ff9f;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .status-bar {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 159, 0.1);
+            border-radius: 12px;
+            border-left: 4px solid #00ff9f;
+            display: none;
+        }
+
+        .status-bar.show {
+            display: block;
+        }
+
+        .status-bar.error {
+            background: rgba(255, 0, 110, 0.1);
+            border-left-color: #ff006e;
+        }
+
+        .video-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            display: none;
+        }
+
+        .video-actions.show {
+            display: flex;
+        }
+
+        .action-btn {
+            padding: 10px 20px;
+            background: rgba(0, 255, 159, 0.2);
+            border: 1px solid #00ff9f;
+            color: #00ff9f;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .action-btn:hover {
+            background: rgba(0, 255, 159, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .examples {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+        }
+
+        .examples h3 {
+            color: #00ff9f;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .example-chip {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 5px;
+            background: rgba(0, 255, 159, 0.1);
+            border: 1px solid rgba(0, 255, 159, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .example-chip:hover {
+            background: rgba(0, 255, 159, 0.2);
+            border-color: #00ff9f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🦖 Synesthesia Playground</h1>
+        <p class="subtitle">Turn your imagination into moving visuals</p>
+
+        <div class="input-section">
+            <textarea id="prompt-input" class="prompt-input"
+                placeholder="Describe what you want to see... (e.g., 'A neon-lit cyberpunk cityscape with holographic billboards')"></textarea>
+
+            <div class="controls">
+                <button id="generate-btn" class="generate-btn">Generate Video</button>
+
+                <div class="orientation-toggle">
+                    <button class="orientation-btn" data-orientation="landscape">🖥️ Landscape</button>
+                    <button class="orientation-btn active" data-orientation="portrait">📱 Portrait</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-section" id="video-section">
+            <div id="placeholder" class="placeholder">
+                <div class="placeholder-icon">🎬</div>
+                <h3>Ready to create</h3>
+                <p>Enter a prompt above and click Generate Video</p>
+            </div>
+
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <h3>Generating your video...</h3>
+                <p id="loading-status">Submitting to Odyssey...</p>
+            </div>
+
+            <video id="video-player" class="video-player" controls autoplay loop></video>
+        </div>
+
+        <div id="status-bar" class="status-bar"></div>
+
+        <div id="video-actions" class="video-actions">
+            <a id="open-link" class="action-btn" target="_blank">🔗 Open in New Tab</a>
+            <a id="download-link" class="action-btn" download>⬇️ Download Video</a>
+        </div>
+
+        <div class="examples">
+            <h3>💡 Example Prompts</h3>
+            <span class="example-chip">Chrome-scaled apex predator with bioluminescent neon veins</span>
+            <span class="example-chip">Floating cyberpunk temple in neon-soaked rain</span>
+            <span class="example-chip">Holographic dino dancing in a digital forest</span>
+            <span class="example-chip">Quantum particles forming a cosmic dragon</span>
+            <span class="example-chip">Retro-futuristic synthwave sunset over silicon desert</span>
+        </div>
+    </div>
+
+    <script>
+        let portrait = true;
+        let currentJobId = null;
+        let pollInterval = null;
+
+        const promptInput = document.getElementById('prompt-input');
+        const generateBtn = document.getElementById('generate-btn');
+        const videoSection = document.getElementById('video-section');
+        const placeholder = document.getElementById('placeholder');
+        const loading = document.getElementById('loading');
+        const loadingStatus = document.getElementById('loading-status');
+        const videoPlayer = document.getElementById('video-player');
+        const statusBar = document.getElementById('status-bar');
+        const videoActions = document.getElementById('video-actions');
+        const openLink = document.getElementById('open-link');
+        const downloadLink = document.getElementById('download-link');
+
+        // Orientation toggle
+        document.querySelectorAll('.orientation-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.orientation-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                portrait = btn.dataset.orientation === 'portrait';
+            });
+        });
+
+        // Example chips
+        document.querySelectorAll('.example-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                promptInput.value = chip.textContent;
+                promptInput.focus();
+            });
+        });
+
+        // Generate button
+        generateBtn.addEventListener('click', async () => {
+            const prompt = promptInput.value.trim();
+
+            if (!prompt) {
+                showStatus('Please enter a prompt', true);
+                return;
+            }
+
+            // Show loading
+            placeholder.style.display = 'none';
+            videoPlayer.classList.remove('show');
+            loading.classList.add('show');
+            videoActions.classList.remove('show');
+            generateBtn.disabled = true;
+            statusBar.classList.remove('show');
+
+            try {
+                // Submit generation
+                loadingStatus.textContent = 'Submitting to Odyssey...';
+                const response = await fetch('http://localhost:8000/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt, portrait })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.detail || 'Generation failed');
+                }
+
+                currentJobId = data.job_id;
+                showStatus(`Job started: ${currentJobId}`);
+                loadingStatus.textContent = 'Processing... this may take 30-60 seconds';
+
+                // Poll for completion
+                pollForCompletion(currentJobId);
+
+            } catch (error) {
+                showStatus(`Error: ${error.message}`, true);
+                loading.classList.remove('show');
+                placeholder.style.display = 'block';
+                generateBtn.disabled = false;
+            }
+        });
+
+        async function pollForCompletion(jobId) {
+            pollInterval = setInterval(async () => {
+                try {
+                    const response = await fetch(`http://localhost:8000/job/${jobId}`);
+                    const data = await response.json();
+
+                    console.log('Job status response:', data); // DEBUG
+
+                    if (data.status === 'completed' && data.video_url) {
+                        clearInterval(pollInterval);
+                        showVideo(data.video_url);
+                        showStatus('✅ Video ready!');
+                        generateBtn.disabled = false;
+                    } else if (data.status === 'completed' && !data.video_url) {
+                        // Sometimes completed but video URL not ready yet
+                        loadingStatus.textContent = `Status: ${data.status} (waiting for video URL...)`;
+                    } else if (data.status === 'failed' || data.status === 'error') {
+                        clearInterval(pollInterval);
+                        showStatus(`❌ Generation failed: ${data.error || 'Unknown error'}`, true);
+                        loading.classList.remove('show');
+                        placeholder.style.display = 'block';
+                        generateBtn.disabled = false;
+                    } else {
+                        loadingStatus.textContent = `Status: ${data.status}...`;
+                    }
+                } catch (error) {
+                    clearInterval(pollInterval);
+                    showStatus(`Error checking status: ${error.message}`, true);
+                    generateBtn.disabled = false;
+                }
+            }, 3000); // Poll every 3 seconds
+        }
+
+        function showVideo(url) {
+            loading.classList.remove('show');
+            videoPlayer.src = url;
+            videoPlayer.classList.add('show');
+            videoActions.classList.add('show');
+            openLink.href = url;
+            downloadLink.href = url;
+        }
+
+        function showStatus(message, isError = false) {
+            statusBar.textContent = message;
+            statusBar.classList.add('show');
+            if (isError) {
+                statusBar.classList.add('error');
+            } else {
+                statusBar.classList.remove('error');
+            }
+        }
+
+        // Enter to submit
+        promptInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                generateBtn.click();
+            }
+        });
+    </script>
+</body>
+
+</html>

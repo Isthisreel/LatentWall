@@ -1,0 +1,244 @@
+{
+    "project": "Dino 26 - Synesthesia Engine",
+    "version": "1.0.0-poc",
+    "description": "Audio-reactive visual generation using Odyssey API with Dino 26 cyberpunk prehistoric lore",
+    "themes": [
+        "neon",
+        "prehistoric",
+        "glitch",
+        "cyberpunk",
+        "digital_decay"
+    ],
+    "color_palette": {
+        "primary": "#00ff9f",
+        "primary_glow": "rgba(0, 255, 159, 0.6)",
+        "secondary": "#ff006e",
+        "secondary_glow": "rgba(255, 0, 110, 0.6)",
+        "accent": "#ffbe0b",
+        "accent_glow": "rgba(255, 190, 11, 0.6)",
+        "background": "#0a0e27",
+        "surface": "#1a1f3a",
+        "text": "#e0e0e0",
+        "text_dim": "#8892b0"
+    },
+    "character_design": {
+        "dino": {
+            "species": "Tyrannosaurus Rex",
+            "age": "Unknown (time-displaced)",
+            "aesthetics": "Chrome-scaled apex predator with bioluminescent neon veins pulsing through metallic hide",
+            "environment": "Neon-lit prehistoric jungle merged with decaying cyberpunk cityscape",
+            "personality": "Ancient intelligence awakened in digital age - curious yet territorial",
+            "special_features": [
+                "Glitch-effect scales that flicker between organic and digital",
+                "Eyes glow with shifting neon colors (green/pink/yellow)",
+                "Roar creates visible sound waves in neon spectrum",
+                "Leaves trails of digital particles when moving"
+            ]
+        }
+    },
+    "audio_mappings": {
+        "high_energy": {
+            "bpm_range": [
+                120,
+                200
+            ],
+            "energy_level": [
+                0.7,
+                1.0
+            ],
+            "camera_movement": "rapid_shake",
+            "camera_speed": "fast",
+            "lighting_style": "strobe_neon",
+            "lighting_colors": [
+                "#00ff9f",
+                "#ff006e",
+                "#ffbe0b"
+            ],
+            "scene_description": "Dino charging through neon jungle at full sprint, lightning effects crackling, camera rapidly tracking from low angle, glitch artifacts intensifying with each roar",
+            "mood": "aggressive",
+            "intensity": "maximum",
+            "effects": [
+                "VHS distortion",
+                "scanline overlay",
+                "chromatic aberration",
+                "motion blur trails"
+            ]
+        },
+        "medium_energy": {
+            "bpm_range": [
+                80,
+                120
+            ],
+            "energy_level": [
+                0.4,
+                0.7
+            ],
+            "camera_movement": "smooth_tracking",
+            "camera_speed": "medium",
+            "lighting_style": "pulsing_glow",
+            "lighting_colors": [
+                "#00ff9f",
+                "#8892b0"
+            ],
+            "scene_description": "Dino prowling through glitching cyber-ruins at steady pace, neon signs flickering overhead, camera orbiting smoothly, digital rain falling",
+            "mood": "hunting",
+            "intensity": "moderate",
+            "effects": [
+                "subtle glitch",
+                "rain particles",
+                "neon reflections",
+                "depth of field"
+            ]
+        },
+        "low_energy": {
+            "bpm_range": [
+                40,
+                80
+            ],
+            "energy_level": [
+                0.0,
+                0.4
+            ],
+            "camera_movement": "slow_pan",
+            "camera_speed": "crawl",
+            "lighting_style": "ambient_neon",
+            "lighting_colors": [
+                "#ff006e",
+                "#ffbe0b"
+            ],
+            "scene_description": "Dino observing from cliff overlooking sprawling cyberpunk cityscape during sunset, camera slowly panning across vista, bioluminescent plants glowing softly, peaceful yet melancholic",
+            "mood": "contemplative",
+            "intensity": "low",
+            "effects": [
+                "lens flare",
+                "god rays",
+                "ambient fog",
+                "gentle particle drift"
+            ]
+        },
+        "silent": {
+            "bpm_range": [
+                0,
+                40
+            ],
+            "energy_level": [
+                0.0,
+                0.1
+            ],
+            "camera_movement": "static",
+            "camera_speed": "none",
+            "lighting_style": "moonlight_neon",
+            "lighting_colors": [
+                "#8892b0",
+                "#1a1f3a"
+            ],
+            "scene_description": "Close-up of Dino's eye reflecting neon city lights, camera completely still, only subtle breathing animation, stars visible above ruins",
+            "mood": "mysterious",
+            "intensity": "minimal",
+            "effects": [
+                "film grain",
+                "vignette",
+                "desaturated edges"
+            ]
+        }
+    },
+    "visual_styles": {
+        "glitch": {
+            "description": "VHS distortion, digital artifacts, RGB split",
+            "intensity_multiplier": 1.5,
+            "triggers": [
+                "high_energy",
+                "sudden_audio_spike"
+            ]
+        },
+        "neon": {
+            "description": "Bright pink/cyan/yellow accents, bloom effects",
+            "primary_colors": [
+                "#00ff9f",
+                "#ff006e",
+                "#ffbe0b"
+            ],
+            "glow_intensity": "high"
+        },
+        "prehistoric": {
+            "description": "Lush vegetation, primordial atmosphere, ancient textures",
+            "flora": [
+                "giant ferns",
+                "bioluminescent fungi",
+                "twisted vines"
+            ],
+            "atmosphere": "humid mist with neon particles"
+        },
+        "cyberpunk": {
+            "description": "Decaying technology, holographic ads, rain-slicked surfaces",
+            "elements": [
+                "flickering signs",
+                "broken holograms",
+                "exposed circuitry"
+            ],
+            "weather": "perpetual neon rain"
+        }
+    },
+    "scene_composition": {
+        "environments": [
+            {
+                "name": "Neon Jungle",
+                "description": "Dense prehistoric forest with bioluminescent plants and neon-lit canopy",
+                "mood": "wild",
+                "time_of_day": "eternal twilight"
+            },
+            {
+                "name": "Cyber Ruins",
+                "description": "Collapsed skyscrapers overtaken by prehistoric vegetation, flickering holograms",
+                "mood": "post-apocalyptic",
+                "time_of_day": "perpetual night"
+            },
+            {
+                "name": "Digital Watering Hole",
+                "description": "Glowing pool of liquid data surrounded by chrome ferns",
+                "mood": "surreal",
+                "time_of_day": "no natural light, only neon"
+            },
+            {
+                "name": "Observation Point",
+                "description": "High cliff overlooking merged timeline cityscape",
+                "mood": "contemplative",
+                "time_of_day": "neon sunset"
+            }
+        ]
+    },
+    "prompt_construction": {
+        "template": "Cinematic shot of {character} {action} in {environment}, {camera_movement} camera, {lighting_style} lighting with {color_palette}, {mood} atmosphere, {visual_effects}, photorealistic with {art_style} aesthetic",
+        "example": "Cinematic shot of chrome-scaled T-Rex charging through neon-lit prehistoric jungle, rapid shake camera, strobe neon lighting with green/pink/yellow palette, aggressive atmosphere, VHS distortion and glitch artifacts, photorealistic with cyberpunk aesthetic"
+    },
+    "audio_analysis_thresholds": {
+        "bpm": {
+            "silent": 40,
+            "low": 80,
+            "medium": 120,
+            "high": 200
+        },
+        "energy": {
+            "silent": 0.1,
+            "low": 0.4,
+            "medium": 0.7,
+            "high": 1.0
+        },
+        "spectral_centroid": {
+            "dark": 2000,
+            "balanced": 4000,
+            "bright": 8000
+        }
+    },
+    "metadata": {
+        "created": "2026-01-29",
+        "artist": "Dino 26 Collective",
+        "genre": "Cyberpunk Prehistoric Fusion",
+        "inspiration": [
+            "Blade Runner 2049",
+            "Jurassic Park",
+            "Tron Legacy",
+            "Ghost in the Shell"
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "nouns": {
+        "cat": "a fluffy domestic cat",
+        "dog": "a friendly dog",
+        "car": "a sleek modern car",
+        "dragon": "a majestic mythical dragon",
+        "ocean": "a vast blue ocean with waves",
+        "forest": "a dense green forest",
+        "city": "a futuristic cyberpunk city",
+        "dinosaur": "a prehistoric dinosaur",
+        "robot": "a mechanical robot",
+        "castle": "a medieval stone castle",
+        "mountain": "a tall snow-capped mountain",
+        "bird": "a colorful bird in flight",
+        "tree": "a large ancient tree",
+        "flower": "a beautiful blooming flower",
+        "house": "a cozy suburban house"
+    },
+    "adjectives": {
+        "red": "vibrant crimson red",
+        "blue": "deep azure blue",
+        "green": "lush emerald green",
+        "yellow": "bright sunny yellow",
+        "dark": "shadowy and ominous",
+        "bright": "brilliantly illuminated",
+        "fast": "high speed with motion blur",
+        "slow": "moving in slow motion",
+        "big": "enormous and towering",
+        "small": "tiny and delicate",
+        "happy": "joyful and cheerful",
+        "sad": "melancholic and somber",
+        "scary": "frightening and terrifying",
+        "beautiful": "stunningly gorgeous"
+    },
+    "verbs": {
+        "running": "running dynamically in motion",
+        "flying": "soaring gracefully through the air",
+        "swimming": "gliding smoothly through water",
+        "jumping": "leaping energetically",
+        "dancing": "moving rhythmically",
+        "exploding": "bursting with explosive energy",
+        "glowing": "emitting radiant light",
+        "burning": "engulfed in flames"
+    }
+}
