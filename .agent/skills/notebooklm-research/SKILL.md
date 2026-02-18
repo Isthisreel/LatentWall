@@ -21,7 +21,7 @@ This skill enables **AI-powered research** by querying your NotebookLM notebooks
 ## Available Notebooks
 
 ### Odyssey ML dev
-**Notebook ID**: `f1b09888-005d-444f-8a4f-0db1a2fc1929`
+**Notebook ID**: 
 
 **Sources** (16 total):
 - Odyssey API documentation
