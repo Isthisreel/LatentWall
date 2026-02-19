@@ -1,5 +1,5 @@
 # LatentWall
-This project serves as a Security-First DevOps Agent swarm. It explores the isolation of autonomous Python execution, serving as the foundational architecture for analyzing Remote Code Execution (RCE) and Prompt Injection risks in LLM tool-use.
+
 
 ## Latent Space Responsiveness in Real-Time World Models
 **Title:** Optimization of Asynchronous Interaction in Generative Diffusion Pipelines
