@@ -46,7 +46,7 @@ class OdysseyClient:
         self.client = Odyssey(api_key=self.api_key)
         self.current_job_id: Optional[str] = None
         
-        logger.info(f"Odyssey client initialized with key: {self.api_key[:8]}...")
+        logger.info("Odyssey client initialized successfully")
     
     async def generate_scene(self, prompt: str, portrait: bool = False) -> Dict:
         """
