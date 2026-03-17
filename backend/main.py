@@ -43,10 +43,21 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS configuration - Allow all for PoC stability
+# CORS configuration - restrict to specific origins in production via CORS_ORIGINS env var
+# Set CORS_ORIGINS as a comma-separated list of allowed origins, e.g.:
+#   CORS_ORIGINS=https://your-frontend.com,https://www.your-frontend.com
+_cors_origins_env = os.getenv("CORS_ORIGINS", "")
+cors_origins: list = [o.strip() for o in _cors_origins_env.split(",") if o.strip()] or ["*"]
+
+if cors_origins == ["*"]:
+    logger.warning(
+        "CORS is configured to allow all origins ('*'). "
+        "Set the CORS_ORIGINS environment variable to restrict access in production."
+    )
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

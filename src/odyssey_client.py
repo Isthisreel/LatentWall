@@ -54,7 +54,7 @@ class OdysseyClientManager:
                     "Set it in .env file or export it."
                 )
             self.initialized = True
-            logger.info("OdysseyClientManager initialized", api_key_prefix=self.api_key[:8])
+            logger.info("OdysseyClientManager initialized")
     
     @property
     def client(self) -> Odyssey:
