@@ -5,5 +5,5 @@ librosa==0.10.1
 numpy==1.26.3
 soundfile==0.12.1
 python-dotenv==1.0.0
-python-multipart==0.0.6
+python-multipart==0.0.22
 git+https://github.com/odysseyml/odyssey-python.git
